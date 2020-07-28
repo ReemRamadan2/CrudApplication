@@ -1,0 +1,38 @@
+﻿@model  IEnumerable<ProductApplication.Models.Products>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 style="text-align:center">List of All Product</h2>
+<br><hr />
+<div ng-controller="ProductController">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+        <tr ng-repeat="product in Product">
+            <td>{{product.Id}}</td>
+            <td>{{product.Name}}</td>
+            <td>{{product.Price}}</td>
+            <td>{{product.Category}}</td>
+           
+            <td>
+                <input type="button" class="btn btn-toolbar" value="Edit" ng-click="RedirectToEdit(product)" /> |
+                <input type="button" class="btn btn-warning" style="color:white" value="Delete" ng-click="DelEmployee(product)" />
+            </td>
+        </tr>
+        <tr>
+            <td><p class="btn btn-primary"> @Html.ActionLink("Create New", "Create", null, new { style = "color:white" }) </p></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>

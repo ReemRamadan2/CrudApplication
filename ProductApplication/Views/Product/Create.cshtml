@@ -1,0 +1,60 @@
+﻿@model ProductApplication.Models.Products
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.HiddenFor(model => model.Id)
+
+<style>
+    textbox {
+        padding: 5px;
+        border: 1px solid groove;
+    }
+
+    input.ng-dirty.ng-invalid {
+        border: 1px solid red;
+        background-color: rgb(255, 244, 244);
+    }
+
+    .error {
+        color: red;
+    }
+</style>
+
+<div>
+    <h2 style="text-align:center;">Add New Product</h2>
+</div>
+<br /><hr />
+<div ng-controller="ProductController">
+    <form name="CreateForm" ng-submit="ProductRecord(Product)" novalidate>
+        <table class="table table-responsive table-bordered">
+          
+            <tr>
+                <td>Name</td>
+                <td>
+                    <input class="textbox" type="text" ng-model="Products.Name" name="pName" ng-class="submitted?'ng-dirty':''" required autofocus />
+                    <span class="error" ng-show="(CreateForm.pName.$dirty || submitted) && CreateForm.pName.$error.required">Name Is Required</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>
+                    <input class="textbox" type="text" ng-model="Products.Price" name="pPrice" ng-class="submitted?'ng-dirty':''" required autofocus />
+                    <span class="error" ng-show="(CreateForm.pPrice.$dirty || submitted) && CreateForm.pPrice.$error.required">Price Is Required</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td>
+                    <input class="textbox" type="text" ng-model="Products.Category" name="pCategory" ng-class="submitted?'ng-dirty':''" required autofocus />
+                    <span class="error" ng-show="(CreateForm.pCategory.$dirty || submitted) && CreateForm.pCategory.$error.required">Category Required</span>
+                </td>
+            </tr>
+          
+        </table>
+        <input type="submit" class="btn btn-success" style="" value="Create" />
+        <p class="btn btn-primary"> @Html.ActionLink("Back to List", "Index", null, new { style = "color:White" })</p>
+    </form>
+</div>
